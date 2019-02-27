@@ -203,7 +203,10 @@ export const reducer = handleActions({
       entities.concat(resources.included || [])
     );
 
-    return imm(newState).value();
+    const finalState = addLinksToState(newState, resources.links, resources.options);
+
+
+    return imm(finalState).value();
   },
 
   [API_WILL_CREATE]: (state) => {
